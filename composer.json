@@ -1,0 +1,39 @@
+{
+    "name": "simon-heimberg/profiler-viewer-bundle",
+    "description": "view profiler data from some other place",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "SimonHeimberg",
+            "email": "simon.heimberg@heimberg-ea.ch"
+        }
+    ],
+    "require": {
+        "symfony/web-profiler-bundle": "^5.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "phpstan/phpstan": "^0.12.19",
+        "symfony/maker-bundle": "^1.15"
+    },
+    "support": {
+        "issues": "https://github.com/SimonHeimberg/ProfilerViewer/issues/"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "SimonHeimberg\\ProfilerViewerBundle\\": ""
+        },
+        "exclude-from-classmap": [
+            "/tests/"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SimonHeimberg\\ProfilerViewerBundle\\Tests\\": "tests/"
+        }
+    }
+}
