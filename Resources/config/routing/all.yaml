@@ -1,0 +1,41 @@
+# routes according to Symfony/Bundle/WebProfilerBundle/Resources/config/routing/profiler.xml
+
+profiler_viewer_home:
+  path: /
+  controller: SimonHeimberg\ProfilerViewerBundle\Controller\ProfilerViewerController::homeAction
+
+profiler_viewer_search:
+  path: search
+  controller: SimonHeimberg\ProfilerViewerBundle\Controller\ProfilerViewerController::searchAction
+
+profiler_viewer_search_bar:
+  path: search_bar
+  controller: SimonHeimberg\ProfilerViewerBundle\Controller\ProfilerViewerController::searchBarAction
+
+profiler_viewer_phpinfo:
+  path: phpinfo
+  controller: SimonHeimberg\ProfilerViewerBundle\Controller\ProfilerViewerController::phpinfoAction
+
+profiler_viewer_search_results:
+  path: '{token}/search/results'
+  controller: SimonHeimberg\ProfilerViewerBundle\Controller\ProfilerViewerController::searchResultsAction
+
+profiler_viewer_open_file:
+  path: open
+  controller: SimonHeimberg\ProfilerViewerBundle\Controller\ProfilerViewerController::openAction
+
+profiler_viewer:
+  path: '{token}'
+  controller: SimonHeimberg\ProfilerViewerBundle\Controller\ProfilerViewerController::panelAction
+
+profiler_viewer_router:
+  path: '{token}/router'
+  controller: SimonHeimberg\ProfilerViewerBundle\Controller\RouterController::panelAction
+
+profiler_viewer_exception:
+  path: '{token}/exception'
+  controller: SimonHeimberg\ProfilerViewerBundle\Controller\ProfilerViewerController::panelAction
+
+profiler_viewer_exception_css:
+  path: '{token}/exception.css'
+  controller: SimonHeimberg\ProfilerViewerBundle\Controller\ProfilerViewerController::stylesheet

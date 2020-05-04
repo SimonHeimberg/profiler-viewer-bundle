@@ -1,0 +1,31 @@
+# parameters:
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        public: false
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+
+    SimonHeimberg\ProfilerViewerBundle\Controller\ProfilerViewerController:
+        parent: web_profiler.controller.profiler # Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController
+        public: true
+        arguments:
+            $generator: '@SimonHeimberg\ProfilerViewerBundle\Wrappers\Router'
+            $profiler: '@SimonHeimberg\ProfilerViewerBundle\Wrappers\ProfilerReader'
+
+    SimonHeimberg\ProfilerViewerBundle\Wrappers\StorageReader:
+        arguments:
+            $profilerPath: '%env(PROFILER_VIEWER_PROFILER_PATH)%'
+
+    SimonHeimberg\ProfilerViewerBundle\Wrappers\Router:
+        # overwrite other service:
+        decorates: router # because directly Generator does not work:
+        # decorates: Symfony\Component\Routing\Generator\UrlGeneratorInterface
+        arguments:
+            $router: '@SimonHeimberg\ProfilerViewerBundle\Wrappers\Router.inner'
+
+    SimonHeimberg\ProfilerViewerBundle\Wrappers\ProfilerReader:
+        arguments:
+            $readStorage: '@SimonHeimberg\ProfilerViewerBundle\Wrappers\StorageReader'
