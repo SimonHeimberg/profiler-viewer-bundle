@@ -1,0 +1,23 @@
+{% extends "@!WebProfiler/Profiler/base.html.twig" %}
+
+{% block title %}
+    {% if '_profiler' not in app.request.pathInfo %}*{{ parent() }}*{% else %}{{ parent() }}{% endif %}
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    {% if '_profiler' not in app.request.pathInfo %}
+        <style>
+            div#header {
+                background-color: blue;
+            }
+            div#header>div.container>h1 {
+                color: dark-blue;
+            }
+            div#header>div.container>h1::after {
+                content: " from {{ profiler.storagePath | default('...') }}";
+                font-size: small;
+            }
+        </style>
+    {% endif %}
+{% endblock %}
