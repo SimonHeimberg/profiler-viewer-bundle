@@ -13,7 +13,7 @@ check-lastCommit: ## check last done (HEAD) commit
 .PHONY: check-lastCommit
 
 check-changes: ## check changed files
-	pre-commit run --files $(git diff --name-only)
+	pre-commit run --files $$(git diff --name-only)
 .PHONY: check-changes
 
 check-precommit: ## check all added files (after git add)
