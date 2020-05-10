@@ -22,7 +22,7 @@ services:
             $profiler: '@SimonHeimberg\ProfilerViewerBundle\Wrappers\ProfilerReader'
 
     SimonHeimberg\ProfilerViewerBundle\Controller\ExceptionPanelViewerController:
-        parent: web_profiler.controller.exception_panel # Symfony\Bundle\WebProfilerBundle\Controller\ExceptionPanelController
+        parent: web_profiler.controller.exception # Symfony\Bundle\WebProfilerBundle\Controller\ExceptionController
         public: true
         arguments:
             $profiler: '@SimonHeimberg\ProfilerViewerBundle\Wrappers\ProfilerReader'

@@ -34,8 +34,8 @@ profiler_viewer_router:
 
 profiler_viewer_exception:
   path: '{token}/exception'
-  controller: SimonHeimberg\ProfilerViewerBundle\Controller\ExceptionPanelViewerController::body
+  controller: SimonHeimberg\ProfilerViewerBundle\Controller\ExceptionPanelViewerController::showAction
 
 profiler_viewer_exception_css:
   path: '{token}/exception.css'
-  controller: SimonHeimberg\ProfilerViewerBundle\Controller\ExceptionPanelViewerController::stylesheet
+  controller: SimonHeimberg\ProfilerViewerBundle\Controller\ExceptionPanelViewerController::cssAction

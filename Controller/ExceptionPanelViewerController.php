@@ -2,14 +2,16 @@
 
 namespace SimonHeimberg\ProfilerViewerBundle\Controller;
 
-use SimonHeimberg\ProfilerViewerBundle\Wrappers\ProfilerReader;
-use Symfony\Bundle\WebProfilerBundle\Controller\ExceptionPanelController;
-use Symfony\Component\ErrorHandler\ErrorRenderer\HtmlErrorRenderer;
+use Symfony\Bundle\WebProfilerBundle\Controller\ExceptionController;
+use Symfony\Component\HttpKernel\Debug\FileLinkFormatter;
+use Symfony\Component\HttpKernel\Profiler\Profiler;
+use Twig\Environment;
 
-class ExceptionPanelViewerController extends ExceptionPanelController
+class ExceptionPanelViewerController extends ExceptionController
 {
-    public function __construct(HtmlErrorRenderer $errorRenderer, ProfilerReader $profiler = null)
+    public function __construct(Profiler $profiler = null, Environment $twig, bool $debug, FileLinkFormatter $fileLinkFormat = null)
     {
-        parent::__construct($errorRenderer, $profiler);
+        // $fileLinkFormat only for sy4
+        parent::__construct($profiler, $twig, $debug, $fileLinkFormat);
     }
 }
