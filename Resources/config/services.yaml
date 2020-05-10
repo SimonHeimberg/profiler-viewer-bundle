@@ -15,6 +15,18 @@ services:
             $generator: '@SimonHeimberg\ProfilerViewerBundle\Wrappers\Router'
             $profiler: '@SimonHeimberg\ProfilerViewerBundle\Wrappers\ProfilerReader'
 
+    SimonHeimberg\ProfilerViewerBundle\Controller\RouterViewerController:
+        parent: web_profiler.controller.router # Symfony\Bundle\WebProfilerBundle\Controller\RouterController
+        public: true
+        arguments:
+            $profiler: '@SimonHeimberg\ProfilerViewerBundle\Wrappers\ProfilerReader'
+
+    SimonHeimberg\ProfilerViewerBundle\Controller\ExceptionPanelViewerController:
+        parent: web_profiler.controller.exception_panel # Symfony\Bundle\WebProfilerBundle\Controller\ExceptionPanelController
+        public: true
+        arguments:
+            $profiler: '@SimonHeimberg\ProfilerViewerBundle\Wrappers\ProfilerReader'
+
     SimonHeimberg\ProfilerViewerBundle\Wrappers\StorageReader:
         arguments:
             $profilerPath: '%env(PROFILER_VIEWER_PROFILER_PATH)%'

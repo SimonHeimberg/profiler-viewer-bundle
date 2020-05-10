@@ -30,12 +30,12 @@ profiler_viewer:
 
 profiler_viewer_router:
   path: '{token}/router'
-  controller: SimonHeimberg\ProfilerViewerBundle\Controller\RouterController::panelAction
+  controller: SimonHeimberg\ProfilerViewerBundle\Controller\RouterViewerController::panelAction
 
 profiler_viewer_exception:
   path: '{token}/exception'
-  controller: SimonHeimberg\ProfilerViewerBundle\Controller\ProfilerViewerController::panelAction
+  controller: SimonHeimberg\ProfilerViewerBundle\Controller\ExceptionPanelViewerController::body
 
 profiler_viewer_exception_css:
   path: '{token}/exception.css'
-  controller: SimonHeimberg\ProfilerViewerBundle\Controller\ProfilerViewerController::stylesheet
+  controller: SimonHeimberg\ProfilerViewerBundle\Controller\ExceptionPanelViewerController::stylesheet
