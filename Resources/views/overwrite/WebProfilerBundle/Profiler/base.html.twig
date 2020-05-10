@@ -18,6 +18,10 @@
                 content: " from {{ profile.storagePath | default('...') }}";
                 font-size: small;
             }
+            {# TODO adapt when env variable set: #}
+            table#router-logs::before {
+                content: "Not shown because would not match. See original note below."
+            }
         </style>
     {% endif %}
 {% endblock %}

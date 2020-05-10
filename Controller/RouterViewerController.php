@@ -15,9 +15,8 @@ class RouterViewerController extends RouterController
         if (isset($_ENV['PROFILER_VIEWER_ROUTES_MATCHING'])) {
             parent:: __construct($profiler, $twig, $matcher, $routes);
         } else {
-            // is currently disabled, because data is from this app
-            // TODO maybe show valid part
-            parent::__construct($profiler, $twig, null, null);
+            $dummyCollection = new RouteCollection();
+            parent:: __construct($profiler, $twig, $matcher, $dummyCollection);
         }
     }
 }
