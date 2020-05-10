@@ -11,7 +11,6 @@ use Symfony\Component\Routing\RouterInterface;
 class Router implements RouterInterface
 {
     // Overwriting the route generator would be sufficient, but does not work because of how symfony's container is created.
-    use Traits\RouterTrait;
 
     /**
      * @var RouterInterface wrapped router
@@ -23,7 +22,7 @@ class Router implements RouterInterface
         $this->inner = $router;
     }
 
-    protected function doGenerate(string $name, array $parameters = [], int $referenceType = self::ABSOLUTE_PATH)
+    public function generate(string $name, array $parameters = [], int $referenceType = self::ABSOLUTE_PATH)
     {
         // rewrites profiler routes when inside profiler viewer
         $pathInfo = $this->inner->getContext()->getPathInfo();
@@ -48,7 +47,7 @@ class Router implements RouterInterface
         return $this->inner->setContext($context);
     }
 
-    protected function doMatch(string $pathinfo)
+    public function match(string $pathinfo)
     {
         return $this->inner->match($pathinfo);
     }
