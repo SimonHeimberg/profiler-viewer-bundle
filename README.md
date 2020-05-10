@@ -84,3 +84,8 @@ Example: `PROFILER_VIEWER_PROFILER_PATH=/mendia/from_your_system/project/var/cac
 Enable dev mode (`APP_ENV=dev`) because the symfony profiler warns when used in prod mode.
 
 Navigate to the page http://your-app-base-url/pview/. Use the profiler as usual
+
+Known issues
+============
+
+* router panel is not shown because it would show current router data

@@ -12,6 +12,11 @@ class RouterViewerController extends RouterController
 {
     public function __construct(ProfilerReader $profiler = null, Environment $twig, UrlMatcherInterface $matcher = null, RouteCollection $routes = null)
     {
-        parent:: __construct($profiler, $twig, $matcher, $routes);
+        if (isset($_ENV['PROFILER_VIEWER_ROUTES_MATCHING'])) {
+            parent:: __construct($profiler, $twig, $matcher, $routes);
+        } else {
+            $dummyCollection = new RouteCollection();
+            parent:: __construct($profiler, $twig, $matcher, $dummyCollection);
+        }
     }
 }
