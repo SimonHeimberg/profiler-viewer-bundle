@@ -10,8 +10,6 @@ use Symfony\Component\HttpKernel\Profiler\ProfilerStorageInterface;
  */
 class StorageReader implements ProfilerStorageInterface
 {
-    use Traits\StorageReaderTrait;
-
     /**
      * @var ProfilerStorageInterface wrapped storage
      */
@@ -37,12 +35,12 @@ class StorageReader implements ProfilerStorageInterface
         $this->setStorage($storage);
     }
 
-    protected function doFind(?string $ip, ?string $url, ?int $limit, ?string $method, int $start = null, int $end = null, string $statusCode = null): array
+    public function find($ip, $url, $limit, $method, $start = null, $end = null): array
     {
-        return $this->storage->find($ip, $url, $limit, $method, $start, $end, $statusCode);
+        return $this->storage->find($ip, $url, $limit, $method, $start, $end);
     }
 
-    protected function doRead(string $token): ?Profile
+    public function read($token): ?Profile
     {
         $profile = $this->storage->read($token);
         if (null !== $profile) {
