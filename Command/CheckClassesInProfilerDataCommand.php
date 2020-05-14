@@ -6,7 +6,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Filesystem\Exception\IOException;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
 /**
@@ -88,20 +88,29 @@ EOMsg
 
     private function getClasses($profilerDataFile)
     {
-        $c = file_get_contents($profilerDataFile, false, null, 0, 1); // read one character
-        if (!$c) {
-            throw new IOException("can not read file $profilerDataFile");
+        $cmds = [
+            ['zgrep', '--text', '-o', 'C:[0-9]*:"[^"]*"', $profilerDataFile],
+            ['sort', '-u'],
+            ['sed', '-s', '-e', 's%^[^"]*"%%', '-e', 's%"$%%'],
+        ];
+        $lastProc = null;
+        $procs = [];
+        foreach ($cmds as $cmd) {
+            $proc = new Process($cmd);
+            if ($lastProc) {
+                $proc->setInput($lastProc);
+            }
+            $procs[] = $lastProc = $proc;
         }
-
-        $cmd1 = <<<EOsh1
-zgrep --text -o 'C:[0-9]*:"[^"]*"' '$profilerDataFile' | \n
-EOsh1;
-        $cmd2 = <<<'EOsh2'
-            sort -u |
-            sed -s -e 's%^[^"]*"%%' -e 's%"$%%'
-EOsh2;
-        $proc = Process::fromShellCommandLine($cmd1.$cmd2);
-        $proc->mustRun();
+        foreach ($procs as $proc) {
+            $proc->start();
+        }
+        foreach ($procs as $proc) {
+            $ret = $proc->wait();
+            if (0 !== $ret) {
+                throw new ProcessFailedException($proc);
+            }
+        }
 
         return explode("\n", $proc->getOutput());
     }
