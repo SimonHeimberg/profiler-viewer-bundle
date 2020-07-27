@@ -1,6 +1,6 @@
 View profiler data outside the instance you recorded it.
 
-Normally  use the app [ProfilerViewer](https://github.com/SimonHeimberg/profiler_viewer_app)
+Normally  use the app [ProfilerViewer](https://github.com/SimonHeimberg/profiler-viewer)
 instead, which uses this bundle. Use the bundle directly in complex cases.
 
 
