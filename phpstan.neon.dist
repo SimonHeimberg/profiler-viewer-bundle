@@ -8,3 +8,9 @@ parameters:
       - .
     excludes_analyse:
       - vendor/
+
+    ignoreErrors:
+      - message: "#^Method Symfony\\\\Component\\\\HttpKernel\\\\Profiler\\\\ProfilerStorageInterface\\:\\:find\\(\\) invoked with 7 parameters, 4\\-6 required\\.$#"
+        count: 1
+        path: Wrappers/StorageReader.php
+        # FileProfilerStorage has the argument $statusCode, even when ProfilerStorageInterface does not have it

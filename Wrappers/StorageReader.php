@@ -37,6 +37,8 @@ class StorageReader implements ProfilerStorageInterface
 
     public function find(?string $ip, ?string $url, ?int $limit, ?string $method, int $start = null, int $end = null, string $statusCode = null): array
     {
+        // FileProfilerStorage has the argument $statusCode, even when the interface does not have it
+
         return $this->storage->find($ip, $url, $limit, $method, $start, $end, $statusCode);
     }
 
