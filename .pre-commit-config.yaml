@@ -1,5 +1,6 @@
 # pre-commit hooks, see https://pre-commit.com
-# activate hook with: pre-commit install
+#
+# install git hooks with pre-commit install
 
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -22,16 +23,8 @@ repos:
   rev: 1.4.0
   hooks:
     - id: php-lint
-    #- id: php-unit
-#    - id: php-cs
-#      files: \.(php)$
-#      args: [--standard=PSR1 -p]
-#    - id: php-cbf
-#      files: \.(php)$
-#      args: [--standard=PSR1 -p]
     - id: php-cs-fixer
       files: \.(php)$
-#      args: [--level=PSR2]
     - id: php-stan
       files: \.(php)$
 
@@ -41,8 +34,11 @@ repos:
     - id: jinjalint
       types: [text]
       files: \.twig$
-#      args:
-#        - --parse-only
+
+- repo: https://github.com/IamTheFij/docker-pre-commit
+  rev: v2.0.0
+  hooks:
+    - id: hadolint # checks DockerFile
 
 - repo: local
   hooks:
@@ -52,5 +48,18 @@ repos:
       files: ^config/
       language: pygrep
       entry: '^[^%#\n]*%([^%\n]*%[^%\n]*%)*[^%\n]*($|#)'
-#      entry: '^[^%]*%[^%]*$|^[^%]*%[^%]*%[^%]*%[^%]*$'
       args: [--multiline]
+    - id: lint-container
+      name: check config of container
+      files: ^config/
+      language: script
+      entry: bin/console
+      args: [lint:container]
+      pass_filenames: false
+    - id: composer-validate
+      name: composer files valid
+      files: composer.(json|lock)
+      language: system
+      entry: composer
+      args: [validate]
+      pass_filenames: false
