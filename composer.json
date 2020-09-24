@@ -3,7 +3,7 @@
     "description": "view profiler data of symfony from some other place",
     "type": "symfony-bundle",
     "keywords": ["profiler", "symfony"],
-    "homepage": "httsp://github.com/SimonHeimberg/profiler-viewer-bundle",
+    "homepage": "https://github.com/SimonHeimberg/profiler-viewer-bundle",
     "license": "MIT",
     "authors": [
         {
