@@ -56,3 +56,10 @@ repos:
       entry: bin/console
       args: [lint:container]
       pass_filenames: false
+    - id: composer-validate
+      name: composer files valid
+      files: composer.(json|lock)
+      language: system
+      entry: composer
+      args: [validate]
+      pass_filenames: false
