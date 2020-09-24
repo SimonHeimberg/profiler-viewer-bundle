@@ -1,7 +1,9 @@
 {
     "name": "simon-heimberg/profiler-viewer-bundle",
-    "description": "view profiler data from some other place",
+    "description": "view profiler data of symfony from some other place",
     "type": "symfony-bundle",
+    "keywords": ["profiler", "symfony"],
+    "homepage": "httsp://github.com/SimonHeimberg/profiler-viewer-bundle",
     "license": "MIT",
     "authors": [
         {
@@ -18,7 +20,7 @@
         "symfony/maker-bundle": "^1.15"
     },
     "support": {
-        "issues": "https://github.com/SimonHeimberg/ProfilerViewer/issues/"
+        "issues": "https://github.com/SimonHeimberg/profiler-viewer-bundle/issues/"
     },
     "config": {
         "sort-packages": true

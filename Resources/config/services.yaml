@@ -41,3 +41,7 @@ services:
     SimonHeimberg\ProfilerViewerBundle\Wrappers\ProfilerReader:
         arguments:
             $readStorage: '@SimonHeimberg\ProfilerViewerBundle\Wrappers\StorageReader'
+
+    SimonHeimberg\ProfilerViewerBundle\Command\:
+        resource: '../../Command'
+        tags: ['console.command']
