@@ -1,0 +1,20 @@
+# default config for phpstan
+#
+# more infos: vendor/bin/phpstan analyze --help
+
+parameters:
+    level: 5 # higher when all is fixed
+    paths:
+      - .
+    excludes_analyse:
+      - vendor/
+
+    ignoreErrors:
+      - message: "#^Method Symfony\\\\Component\\\\HttpKernel\\\\Profiler\\\\ProfilerStorageInterface\\:\\:find\\(\\) invoked with 7 parameters, 4\\-6 required\\.$#"
+        count: 1
+        path: Wrappers/StorageReader.php
+        # FileProfilerStorage has the argument $statusCode, even when ProfilerStorageInterface does not have it
+      - message: "#^Access to an undefined property Symfony\\\\Component\\\\HttpKernel\\\\Profiler\\\\Profile\\:\\:\\$storagePath\\.$#"
+        count: 1
+        path: Wrappers/StorageReader.php
+        # attribute is read by this bundle in Profiler/base.html.twig
